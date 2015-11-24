@@ -1,0 +1,21 @@
+{
+  "name": "vlobchuk/isolate-console-provider",
+  "description": "",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Vitaly Lobchuk",
+      "email": "vn.lobchuk@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Isolate\\ConsoleServiceProvider\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "silex/silex": "~1.3",
+    "symfony/console": "~2.1"
+  }
+}
