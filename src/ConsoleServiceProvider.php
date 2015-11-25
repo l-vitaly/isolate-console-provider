@@ -21,7 +21,7 @@ class ConsoleServiceProvider implements ServiceProviderInterface
     $app['console'] = $app->share(function() use ($app) {
       $console = new ConsoleApplication(
         $app,
-        $app['console.basePath'],
+        $app['console.base_path'],
         $app['console.name'],
         $app['console.version']
       );
