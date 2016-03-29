@@ -2,8 +2,8 @@
 
 namespace Isolate\ConsoleServiceProvider;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Isolate\ConsoleServiceProvider\Console\ConsoleEvent;
 use Isolate\ConsoleServiceProvider\Console\ConsoleEvents;
 use Isolate\ConsoleServiceProvider\Console\Application as ConsoleApplication;
@@ -16,17 +16,17 @@ class ConsoleServiceProvider implements ServiceProviderInterface
    * This method should only be used to configure services and parameters.
    * It should not get services.
    */
-  public function register(Application $app)
+  public function register(Container $container)
   {
-    $app['console'] = $app->share(function() use ($app) {
+    $container['console'] = $container->share(function() use ($container) {
       $console = new ConsoleApplication(
-        $app,
-        $app['console.base_path'],
-        $app['console.name'],
-        $app['console.version']
+        $container,
+        $container['console.base_path'],
+        $container['console.name'],
+        $container['console.version']
       );
 
-      $app['dispatcher']->dispatch(ConsoleEvents::INIT, new ConsoleEvent($console));
+      $container['dispatcher']->dispatch(ConsoleEvents::INIT, new ConsoleEvent($console));
 
       return $console;
     });

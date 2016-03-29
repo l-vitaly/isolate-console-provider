@@ -3,14 +3,14 @@
 namespace Isolate\ConsoleServiceProvider\Console;
 
 use Symfony\Component\Console\Application as BaseApplication;
-use Silex\Application as SilexApplication;
+use Pimple\Container;
 
 class Application extends BaseApplication
 {
   /**
-   * @var SilexApplication
+   * @var Container
    */
-  private $app;
+  private $container;
 
   /**
    * @var string
@@ -18,27 +18,27 @@ class Application extends BaseApplication
   private $basePath;
 
   /**
-   * @param SilexApplication $application
+   * @param Container $container
    * @param string $basePath
    * @param string $name
    * @param string $version
    */
-  public function __construct(SilexApplication $application, $basePath, $name = 'UNKNOWN', $version = 'UNKNOWN')
+  public function __construct(Container $container, $basePath, $name = 'UNKNOWN', $version = 'UNKNOWN')
   {
     parent::__construct($name, $version);
 
-    $this->app = $application;
+    $this->container = $container;
     $this->basePath = $basePath;
 
-    $application->boot();
+    $container->boot();
   }
 
   /**
    * @return SilexApplication
    */
-  public function getSilexApp()
+  public function getContainer()
   {
-    return $this->app;
+    return $this->container;
   }
 
   /**
