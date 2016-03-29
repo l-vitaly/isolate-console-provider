@@ -1,17 +1,17 @@
 <?php
 namespace Isolate\ConsoleServiceProvider\Console\Command;
 
-use Silex\Application;
+use Pimple\Container;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 
 class Command extends BaseCommand
 {
   /**
-   * @return Application
+   * @return Container
    */
-  public function getSilexApp()
+  public function getContainer()
   {
-    return $this->getApplication()->getSilexApp();
+    return $this->getApplication()->getContainer();
   }
 
   /**

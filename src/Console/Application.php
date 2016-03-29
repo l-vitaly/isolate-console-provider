@@ -34,7 +34,7 @@ class Application extends BaseApplication
   }
 
   /**
-   * @return SilexApplication
+   * @return Container
    */
   public function getContainer()
   {
